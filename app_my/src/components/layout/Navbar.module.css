@@ -1,0 +1,43 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #BADABE;
+    padding: 1em;
+  }
+  
+  .list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+  
+  .item {
+    margin-right: 1em;
+  }
+  
+  .item a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .item a:hover {
+    color: #BADABE;
+    text-decoration: none;
+  }
+
+  .btn {
+    cursor: pointer;
+    outline: none;
+    padding: 5px;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #6cb476;
+    color: #ffffff;
+    border: 1px solid transparent;
+    transition: 0.3s ease all;
+    margin:0.50em 0.50em;
+  }
+  .img{
+    width: 70px!important; /* Definindo a largura em pixels */
+    height: 60px!important; /* Definindo a altura em pixels */
+  }
