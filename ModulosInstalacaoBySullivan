@@ -1,0 +1,95 @@
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ node app.js
+
+Node.js v20.6.1
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install express --save
+
+added 183 packages, and audited 447 packages in 5s
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm notice 
+npm notice New major version of npm available! 9.8.1 -> 10.1.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.1.0
+npm notice Run npm install -g npm@10.1.0 to update!
+npm notice 
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install body-parser --save
+
+up to date, audited 447 packages in 794ms
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install -D handlebars
+
+up to date, audited 447 packages in 780ms
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install mysql
+
+up to date, audited 447 packages in 775ms
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install --save mysql2
+
+up to date, audited 447 packages in 754ms
+
+43 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ install.sh
+bash: install.sh: command not found
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ curl -qL https://www.npmjs.com/install.sh | sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3755  100  3755    0     0  38711      0 --:--:-- --:--:-- --:--:-- 38711
+fetching: https://registry.npmjs.org/npm/-/npm-10.1.0.tgz
+removing existing npm
+installing npm@latest
+
+added 1 package in 5s
+
+28 packages are looking for funding
+  run `npm fund` for details
+successfully installed npm@latest
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install sequelize sqlite3
+npm WARN deprecated @npmcli/move-file@1.1.2: This functionality has been moved to @npmcli/fs
+
+added 122 packages, and audited 569 packages in 4s
+
+44 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install sqlite3
+
+up to date, audited 569 packages in 1s
+
+44 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install handlebars
+
+up to date, audited 569 packages in 1s
+
+44 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ npm install -g nodemon
+
+added 33 packages in 1s
+
+3 packages are looking for funding
+  run `npm fund` for details
+@sscastilho ➜ /workspaces/IFSPORT/lds-master (main) $ 
