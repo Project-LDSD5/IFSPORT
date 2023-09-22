@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{!-- <link rel="stylesheet" href="../views/css/navbar.css"> --}}
+  
+  <style>
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f8f8f8;
+    }
+
+    form p {
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    form button[type="submit"] {
+      background-color: #6cb476;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    form button[type="submit"]:hover {
+      background-color: #5a9c5e;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #BADABE;
+      padding: 1em;
+    }
+
+    .list {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .item {
+      margin-right: 1em;
+    }
+
+    .item a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .item a:hover {
+      color: #BADABE;
+      text-decoration: none;
+    }
+
+    .img {
+      width: 70px!important;
+      height: 60px!important;
+    }
+   
+  </style>
+</head>
+<body>
+   <!--<iframe src="../views/navbar.html" frameborder="0" width="100%" height="50"></iframe>-->
+   <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li class="nav-item"><a href="/projects">Eventos</a></li>
+            <li class="nav-item"><a href="/company">Esporte</a></li>
+            <li class="nav-item"><a href="/contact">Contato</a></li>
+        </ul>
+    </nav>
+
+  <form action="/add" method="POST">
+    <p>Esporte:</p>
+    <input type="text" name="sport">
+    <p>Time da casa:</p>
+    <input type="text" name="hostTeam">
+    <p>Time visitante:</p>
+    <input type="text" name="visitingTeam">
+    <p>Horário do evento:</p>
+    <input type="text" name="eventTime">
+    <p>Data do evento:</p>
+    <input type="text" name="dateEvent" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+    <p>Local do evento:</p>
+    <textarea name="eventsPlace"></textarea>
+    <button type="submit">Cadastrar evento</button>
+  </form>
+</body>
+</html>
