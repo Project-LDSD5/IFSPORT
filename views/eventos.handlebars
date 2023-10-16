@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: #BADABE;
+      color: #ffffff;
+      padding: 1em;
+       margin-bottom: 8px; 
+    }
+
+
+    .navbar-brand {
+      font-family: fantasy;
+      color: #025008;
+      font-size: xx-large;
+      font-style: italic;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+    }
+
+    input {
+      border-radius: 5px;
+      border-color: rgba(185, 0, 185, 0.445)BE;
+    }
+
+   /*Largura específica para os inputs */
+    #sport,
+    #hostTeam,
+    #visitingTeam,
+    #eventTime,
+    #dateEvent,
+    #eventsPlace {
+      width: 20%;
+    }
+
+    .btn-submit {
+      background-color: #1cac28;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    th,
+    td,
+    button {
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+   .container-card {
+      width: 80%;
+      height: 20%;
+      margin: 0 auto;
+    }
+
+    .card-text {
+      text-align: end;
+    }
+
+    .card-with-background {
+      width: 100%;
+      height: 80%;
+      background-image: url('');
+      background-size: cover;
+    }
+
+    .eventos-container {
+      width: 80%;
+      margin: 0 auto;
+      padding-bottom: 100px;
+    }
+
+    .table-container {
+      background-color: #BADABE;
+      color: #000;
+      margin: 0 auto;
+      border-collapse: collapse; 
+      width: 100%; 
+    }
+
+    .table-container th,
+    .table-container td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .table-container th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #BADABE;
+      color: #ffffff;
+      text-align: center;
+      position: static;
+      bottom: 0;
+      width: 100%;
+    }
+
+     h1 {
+      margin-top: 8px; 
+      margin-bottom: 8px; 
+    }
+    /*estilo do card*/
+    .card {
+      width: 386px; 
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-right: 15px;
+      margin-bottom: 20px;
+      display: inline-block;
+      vertical-align: top; 
+    }
+
+    .card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+
+    .card table {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .card table th {
+      padding: 8px;
+      text-align: left;
+      background-color: #d4f7d9; 
+    }
+    .card table td {
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <br><br><br><br><br>
+  <h1>Bem-vindo à Página de eventos</h1>
+   <br><br>
+  {{#each events}}
+  <div class="card">
+    <img src="https://cursos.ifsp.edu.br/static/img/rodape/Marca_IFSP_2015_GRU-05.jpg" alt="Descrição da Imagem">
+    <table>
+      <tr>
+        <th>Esporte</th>
+        <td>{{dataValues.sport}}</td>
+      </tr>
+      <tr>
+        <th>Time da Casa</th>
+        <td>{{dataValues.hostTeam}}</td>
+      </tr>
+      <tr>
+        <th>Time Visitante</th>
+        <td>{{dataValues.visitingTeam}}</td>
+      </tr>
+      <tr>
+        <th>Horário do Evento</th>
+        <td>{{dataValues.eventTime}}</td>
+      </tr>
+      <tr>
+        <th>Data do Evento</th>
+        <td>{{dataValues.dateEvent}}</td>
+      </tr>
+      <tr>
+        <th>Local do Evento</th>
+        <td>{{dataValues.eventsPlace}}</td>
+      </tr>
+    </table>
+  </div>
+  {{/each}}
+</body>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

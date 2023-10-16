@@ -1,15 +1,303 @@
-<p>Eventos:</p>
-{{#each events}}
+<!DOCTYPE html>
+<html lang="en">
 
-    <p>Esporte: {{dataValues.sport}}</p>
-    <p>time da casa: {{dataValues.hostTeam}}</p>
-    <p>time visitante:{{dataValues.visitingTeam}}</p>
-    <p>horario do evento: {{dataValues.eventTime}}</p>
-    <p>data do evento: {{dataValues.dateEvent}}</p>
-    <p>local do evento: {{dataValues.eventsPlace}}</p>
-    <a href="/remove/{{dataValues.id}}"><button>Apagar</button></a>
-    <a href="/update/{{dataValues.id}}"><button>Atualizar</button></a>
-
-{{/each}}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>Times de Futebol</title>
 
 
+  <!-- Referencie seus arquivos CSS externos aqui -->
+  <link rel="stylesheet" href="../views/css/navbar.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: #BADABE;
+      color: #ffffff;
+      padding: 1em;
+
+
+    }
+
+    .navbar-brand {
+      font-family: fantasy;
+      color: #025008;
+      font-size: xx-large;
+      font-style: italic;
+    }
+
+    .event-form-container {
+      text-align: center;
+      /* Centralize horizontalmente */
+      margin: 0 auto;
+      /* Centralize verticalmente ajustando o espaçamento superior */
+      padding-top: 90px;
+      background-color: #ffffff;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+    }
+
+    input {
+      border-radius: 5px;
+      border-color: rgba(185, 0, 185, 0.445)BE;
+    }
+
+    /* Defina uma largura específica para os inputs em computadores */
+    #sport,
+    #hostTeam,
+    #visitingTeam,
+    #eventTime,
+    #dateEvent,
+    #eventsPlace {
+      width: 20%;
+      /* Largura de 20% para computadores */
+    }
+
+    .btn-submit {
+      background-color: #1cac28;
+      /* Cor azul da Globo Esporte */
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #0056b3;
+      /* Cor mais escura ao passar o mouse */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    th,
+    td,
+    button {
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+
+
+    /* Adicione a classe para a tabela do widget */
+    .widget-tabela {
+      height: 400px;
+      /* Defina a altura desejada em pixels */
+      overflow-y: scroll;
+      /* Adicione uma barra de rolagem vertical, se necessário */
+    }
+
+    .col-lg-7 {
+      background-color: #cc005f;
+    }
+
+    .linha {
+      width: 80%;
+      text-align: center;
+      margin: 0 auto;
+      font-weight: bold;
+    }
+
+    .tabela {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .notici {
+      width: 90%;
+      text-align: center;
+      padding-left: 100px;
+    }
+
+    .titnoti {
+      color: #1cac28;
+    }
+
+    .container-card {
+      width: 80%;
+      height: 20%;
+      margin: 0 auto;
+    }
+
+    .card-text {
+      text-align: end;
+    }
+
+    .card-with-background {
+      width: 100%;
+      height: 80%;
+      background-image: url('');
+      background-size: cover;
+    }
+
+    h2 {
+      color: #1cac28;
+    }
+
+    .eventos-container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .table-container {
+      background-color: #BADABE;
+      color: #000;
+      margin: 0 auto;
+      /* Centraliza a tabela no centro da página /
+          border-collapse: collapse; / Remove espaçamento entre células da tabela /
+          width: 100%; / Largura da tabela, ajuste conforme necessário */
+    }
+
+    /* Estilos para as células da tabela */
+    .table-container th,
+    .table-container td {
+      padding: 10px;
+      /* Espaçamento interno das células */
+      border: 1px solid #ddd;
+      /* Borda das células */
+    }
+
+    /* Estilos para o cabeçalho da tabela */
+    .table-container th {
+      background-color: #f2f2f2;
+      /* Cor de fundo do cabeçalho */
+      font-weight: bold;
+      /* Texto em negrito no cabeçalho */
+    }
+  </style>
+</head>
+
+<body>
+
+  <br><br> <br><br>
+  <div class="linha">
+    <hr>
+  </div>
+
+  <!-- Exemplo para o Widget de Tabela !!!NÃO MEXA DE JEITO NENHUM FILHO DO CAPETA!!!!-->
+  <div class="tabela">
+    <h2>Campeonato Brasileiro</h2>
+    <div class="apifutebol-tabela widget-tabela" data-client-id="U5ZAX7MK49C9"></div>
+  </div>
+
+  <div class="linha">
+    <hr>
+  </div>
+  <div class="eventos-container">
+    <h2>Eventos Próximos</h2>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Esporte</th>
+          <th>Time da Casa</th>
+          <th>Time Visitante</th>
+          <th>Horário do Evento</th>
+          <th>Local do Evento</th>
+        </tr>
+
+        {{#each events}}
+        <tr>
+          <td>{{dataValues.sport}}</td>
+          <td>{{dataValues.hostTeam}}</td>
+          <td>{{dataValues.visitingTeam}}</td>
+          <td>{{dataValues.eventTime}}</td>
+          <td>{{dataValues.eventsPlace}}</td>
+        </tr>
+        {{/each}}
+
+      </table>
+    </div>
+    <p class="card-text"><a href="/eventos">Ver todos</a>
+      <style>
+        a {
+          color: #000;
+        }
+      </style>
+    </p>
+  </div>
+
+  <div class="linha">
+    <hr>
+  </div>
+  <div class="container-card">
+    <h2>Notícias</h2>
+    <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+      style="background-image: url('https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/07/GettyImages-1359250280-e1693234991472.jpg');">
+      <h1 class="mb-3 h2">COPA DO BRASIL</h1>
+      <p>A COPA MAIS AGUARDADA DO ANO ESTÁ AQUI</p>
+    </div>
+  </div>
+
+  <!--<div class="notici">
+            <h4 class="titnoti"><strong>This is title of the news</strong></h4>
+            <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
+              placeat facere possimus, omnis voluptas assumenda est, omnis dolor.</p>
+            <p>by <a><strong>Jessica Clark</strong></a>, 26/08/2016</p>
+            <a class="btn btn-primary">Read more</a>
+          </div>-->
+
+  <!-- API Futebol Widget Script NEM AQUI FELA-->
+  <script src="https://cdn.api-futebol.com.br/widgets/v1/apifutebol-tabela.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
