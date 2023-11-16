@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link rel="stylesheet" href="../views/css/main.scss">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <title>Torneio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            overflow-y: scroll;
+            zoom: 75%;
+            /* Adicionado para cobrir toda a altura da página */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #BADABE;
+            color: #ffffff;
+            padding: 1em;
+
+
+        }
+
+
+        .navbar-brand {
+            font-family: fantasy;
+            color: #025008;
+            font-size: xx-large;
+            font-style: italic;
+        }
+
+        .event-form-container {
+            text-align: center;
+            /* Centralize horizontalmente */
+            margin: 0 auto;
+            /* Centralize verticalmente ajustando o espaçamento superior */
+            padding-top: 90px;
+            background-color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        input {
+            border-radius: 5px;
+            border-color: rgba(185, 0, 185, 0.445)BE;
+        }
+
+        /* Defina uma largura específica para os inputs em computadores */
+        #sport,
+        #hostTeam,
+        #visitingTeam,
+        #eventTime,
+        #dateEvent,
+        #eventsPlace {
+            width: 20%;
+            /* Largura de 20% para computadores */
+        }
+
+        .btn-submit {
+            background-color: #1cac28;
+            /* Cor azul da Globo Esporte */
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1,
+        h2 {
+            font-size: 24px;
+        }
+
+        .developers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .developer {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .developer h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #BADABE;
+            color: #ffffff;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .copy_right {
+
+            color: #ffffff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <br><br> <br><br>
+    <div class="linha">
+        <hr>
+    </div>
+
+    <h2>Times</h2>
+    <ul id="teamList"></ul>
+
+    <h2>Partidas - Rodada <span id="roundNumber">1</span></h2>
+    <ul id="matches"></ul>
+
+    <h2>Vencedor da Rodada</h2>
+    <div id="roundWinner"></div>
+
+    <h2>Vencedor do Torneio</h2>
+    <div id="tournamentWinner"></div>
+
+    <form id="teamForm">
+        <label for="teamName">Nome do Time: </label>
+        <input type="text" id="teamName" required>
+        <br>
+        <label for="teamScore">Pontuação: </label>
+        <input type="number" id="teamScore" required>
+        <button type="submit" id="addTeam">Adicionar Time</button>
+    </form>
+    <br>
+    <button id="shuffleTeams">Embaralhar Times</button>
+
+    <div id="teamScores">
+        <ul id="teamScoresList"></ul>
+        <button id="updateScores">Atualizar Pontuações</button>
+        <br>
+    </div>
+    <br>
+    <button id="startTournament">Iniciar Partidas</button>
+    <button id="resetTeams">Reiniciar Torneio</button>
+    <button id="advanceRound">Avançar Rodada</button>
+
+    <script>
+        const teams = [];
+        let currentRound = 1;
+        let tournamentBrackets = [];
+
+        // Função para adicionar um time
+        function addTeam(teamName, teamScore) {
+            teams.push({ name: teamName, score: teamScore });
+            updateTeamList();
+        }
+
+        // Função para embaralhar os times
+        function shuffleTeams() {
+            // Lógica para embaralhar os times (opcional)
+            teams.sort(() => Math.random() - 0.5);
+            updateTeamList();
+        }
+
+        // Função para atualizar as pontuações dos times
+        function updateTeamScores() {
+            const teamScores = document.querySelectorAll('.team-score-input');
+            teamScores.forEach((input) => {
+                const teamName = input.dataset.teamName;
+                const teamScore = parseInt(input.value);
+                const team = teams.find((t) => t.name === teamName);
+                if (team) {
+                    team.score = teamScore;
+                }
+            });
+            updateTeamList();
+        }
+
+        // Função para iniciar o torneio
+        function startTournament() {
+            tournamentBrackets = initializeBrackets(teams);
+            updateMatchesList(currentRound);
+        }
+
+        // Função para reiniciar o torneio
+        function resetTournament() {
+            teams.length = 0; // Limpa o array de times
+            tournamentBrackets.length = 0;
+            currentRound = 1;
+            updateTeamList();
+            updateMatchesList(currentRound);
+            document.getElementById('roundWinner').textContent = '';
+            document.getElementById('tournamentWinner').textContent = '';
+        }
+
+        // Função para exibir os vencedores da rodada na tela
+        function displayRoundWinners(winners) {
+            const roundWinner = document.getElementById('roundWinner');
+            roundWinner.innerHTML = 'Vencedores da Rodada:';
+
+            const winnerList = document.createElement('ul');
+
+            for (const winner of winners) {
+                const listItem = document.createElement('li');
+                listItem.textContent = winner.name;
+                winnerList.appendChild(listItem);
+            }
+
+            roundWinner.appendChild(winnerList);
+        }
+
+        // Função para determinar os vencedores da rodada
+        function determineRoundWinners(roundMatches) {
+            const roundWinners = [];
+
+            for (const match of roundMatches) {
+                if (match.score1 > match.score2) {
+                    roundWinners.push(match.team1);
+                } else if (match.score1 < match.score2) {
+                    roundWinners.push(match.team2);
+                }
+            }
+
+            return roundWinners;
+        }
+
+        // Função para avançar para a próxima rodada
+        function advanceRound() {
+            if (currentRound < tournamentBrackets.length) {
+                const currentBracket = tournamentBrackets[currentRound - 1];
+                const roundWinners = determineRoundWinners(currentBracket);
+                displayRoundWinners(roundWinners);
+
+                const nextRoundMatches = createNextRoundMatches(roundWinners);
+                tournamentBrackets[currentRound] = nextRoundMatches;
+
+                currentRound++;
+                updateMatchesList(currentRound);
+
+                // Após avançar a rodada, atualize e exiba os vencedores da rodada
+                updateRoundWinners(currentRound - 1);
+            } else {
+                determineTournamentWinner();
+            }
+        }
+
+        // Inicializa as chaves do torneio
+        function initializeBrackets(teams) {
+            const brackets = [];
+            const numRounds = Math.ceil(Math.log2(teams.length));
+
+            for (let round = 1; round <= numRounds; round++) {
+                const roundMatches = [];
+
+                for (let i = 0; i < teams.length; i += 2) {
+                    const teamA = teams[i];
+                    const teamB = teams[i + 1];
+                    roundMatches.push({ team1: teamA, team2: teamB, score1: 0, score2: 0 });
+                }
+
+                brackets.push(roundMatches);
+
+                if (teams.length % 2 === 1) {
+                    teams.push({ name: 'Bye', score: 0 });
+                }
+
+                const newTeams = [];
+                for (let i = 0; i < teams.length; i += 2) {
+                    const winner = determineMatchWinner(teams[i], teams[i + 1]);
+                    newTeams.push(winner);
+                }
+
+                teams = newTeams;
+            }
+
+            // Dentro da função initializeBrackets, após criar as partidas da rodada 1:
+            const round1Matches = brackets[0];
+            round1Matches.forEach((match, index) => {
+                const winner = determineMatchWinner(match.team1, match.team2);
+                if (winner === match.team1) {
+                    match.team1 = winner;
+                } else {
+                    match.team2 = winner;
+                }
+            });
+
+            return brackets;
+        }
+
+        // Função para determinar o vencedor do confronto com base nas pontuações
+        function determineMatchWinner(team1, team2) {
+            if (team1.score > team2.score) {
+                return team1;
+            } else {
+                return team2;
+            }
+        }
+
+
+        // Determina o vencedor do torneio
+        function determineTournamentWinner() {
+            const champion = tournamentBrackets[tournamentBrackets.length - 1][0].score1 >
+                tournamentBrackets[tournamentBrackets.length - 1][0].score2 ?
+                tournamentBrackets[tournamentBrackets.length - 1][0].team1 :
+                tournamentBrackets[tournamentBrackets.length - 1][0].team2;
+
+            document.getElementById('tournamentWinner').textContent = `Campeão do Torneio: ${champion.name}`;
+        }
+
+        // Função para atualizar a lista de times na página
+        function updateTeamList() {
+            const teamList = document.getElementById('teamList');
+            teamList.innerHTML = '';
+
+            for (const team of teams) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${team.name}: ${team.score || 0} pontos`;
+                teamList.appendChild(listItem);
+            }
+        }
+        // Função para criar as partidas da próxima rodada com base nos vencedores da rodada anterior
+        function createNextRoundMatches(winners) {
+            const nextRoundMatches = [];
+
+            for (let i = 0; i < winners.length; i += 2) {
+                const teamA = winners[i];
+                const teamB = winners[i + 1];
+                nextRoundMatches.push({ team1: teamA, team2: teamB, score1: 0, score2: 0 });
+            }
+
+            return nextRoundMatches;
+        }
+        // Função para atualizar a lista de partidas na página
+        function updateMatchesList(round) {
+            const matchesList = document.getElementById('matches');
+            const roundNumber = document.getElementById('roundNumber');
+            roundNumber.textContent = round;
+
+            matchesList.innerHTML = '';
+            const roundMatches = tournamentBrackets[round - 1];
+
+            roundMatches.forEach((match, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Partida ${index + 1}: ${match.team1.name} (${match.score1}) vs ${match.team2.name} (${match.score2})`;
+
+                const scoreInput1 = document.createElement('input');
+                scoreInput1.type = 'number';
+                scoreInput1.value = match.score1;
+                scoreInput1.dataset.matchIndex = index;
+                scoreInput1.dataset.teamIndex = 1;
+                listItem.appendChild(scoreInput1);
+
+                const scoreInput2 = document.createElement('input');
+                scoreInput2.type = 'number';
+                scoreInput2.value = match.score2;
+                scoreInput2.dataset.matchIndex = index;
+                scoreInput2.dataset.teamIndex = 2;
+                listItem.appendChild(scoreInput2);
+
+                const updateButton = document.createElement('button');
+                updateButton.textContent = 'Atualizar';
+                updateButton.dataset.matchIndex = index;
+                listItem.appendChild(updateButton);
+
+                matchesList.appendChild(listItem);
+
+                // Adicione um evento de clique para o botão de atualização
+                updateButton.addEventListener('click', () => {
+                    const updatedScore1 = parseInt(scoreInput1.value);
+                    const updatedScore2 = parseInt(scoreInput2.value);
+                    tournamentBrackets[round - 1][index].score1 = updatedScore1;
+                    tournamentBrackets[round - 1][index].score2 = updatedScore2;
+                });
+            });
+        }
+
+        // Adicione um evento de clique para o botão "Adicionar Time"
+        const addTeamButton = document.getElementById('addTeam');
+        addTeamButton.addEventListener('click', () => {
+            const teamNameInput = document.getElementById('teamName');
+            const teamScoreInput = document.getElementById('teamScore');
+            const teamName = teamNameInput.value;
+            const teamScore = parseInt(teamScoreInput.value);
+
+            if (teamName && !isNaN(teamScore)) {
+                addTeam(teamName, teamScore);
+                teamNameInput.value = '';
+                teamScoreInput.value = '';
+            }
+        });
+
+        // Adicione um evento de clique para o botão "Embaralhar Times"
+        const shuffleTeamsButton = document.getElementById('shuffleTeams');
+        shuffleTeamsButton.addEventListener('click', () => {
+            shuffleTeams();
+        });
+
+        // Adicione um evento de clique para o botão "Atualizar Pontuações"
+        const updateScoresButton = document.getElementById('updateScores');
+        updateScoresButton.addEventListener('click', () => {
+            updateTeamScores();
+            updateMatchesList(currentRound);
+        });
+
+        // Adicione um evento de clique para o botão "Iniciar Partidas"
+        const startTournamentButton = document.getElementById('startTournament');
+        startTournamentButton.addEventListener('click', () => {
+            startTournament();
+        });
+
+        // Adicione um evento de clique para o botão "Reiniciar Torneio"
+        const resetTeamsButton = document.getElementById('resetTeams');
+        resetTeamsButton.addEventListener('click', () => {
+            resetTournament();
+        });
+
+        // Adicione um evento de clique para o botão "Avançar Rodada"/////////////////////////////
+        const advanceRoundButton = document.getElementById('advanceRound');
+        advanceRoundButton.addEventListener('click', () => {
+            advanceRound();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+<footer>
+    <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
+</footer>
+
+</html>

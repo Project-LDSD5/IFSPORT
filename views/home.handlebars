@@ -244,7 +244,9 @@
         <tr>
           <th>Esporte</th>
           <th>Time da Casa</th>
+          <th>Pontuação Casa</th>
           <th>Time Visitante</th>
+          <th>Pontuação Visitante</th>
           <th>Horário do Evento</th>
           <th>Local do Evento</th>
         </tr>
@@ -253,7 +255,9 @@
         <tr>
           <td>{{dataValues.sport}}</td>
           <td>{{dataValues.hostTeam}}</td>
+          <td>{{dataValues.hostTeamScore}}</td>
           <td>{{dataValues.visitingTeam}}</td>
+          <td>{{dataValues.visitingTeamScore}}</td>
           <td>{{dataValues.eventTime}}</td>
           <td>{{dataValues.eventsPlace}}</td>
         </tr>
@@ -261,13 +265,7 @@
 
       </table>
     </div>
-    <p class="card-text"><a href="/eventos">Ver todos</a>
-      <style>
-        a {
-          color: #000;
-        }
-      </style>
-    </p>
+    <p class="card-text"><a href="/eventos">Ver todos</a></p>
   </div>
 
   <div class="linha">
@@ -282,15 +280,7 @@
     </div>
   </div>
 
-  <!--<div class="notici">
-            <h4 class="titnoti"><strong>This is title of the news</strong></h4>
-            <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-              placeat facere possimus, omnis voluptas assumenda est, omnis dolor.</p>
-            <p>by <a><strong>Jessica Clark</strong></a>, 26/08/2016</p>
-            <a class="btn btn-primary">Read more</a>
-          </div>-->
-
-  <!-- API Futebol Widget Script NEM AQUI FELA-->
+  <!-- Scripts Bootstrap e API Futebol Widget (mantenha-os inalterados) -->
   <script src="https://cdn.api-futebol.com.br/widgets/v1/apifutebol-tabela.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -299,5 +289,8 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
 </body>
+<footer>
+  <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
+</footer>
 
 </html>

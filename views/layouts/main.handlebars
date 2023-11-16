@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="../../my-app/public/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,400;0,800;1,100;1,700&display=swap"
+        rel="stylesheet">
     <style>
         .navbar {
             background-color: #BADABE;
@@ -28,13 +33,18 @@
             background-color: #ffffff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
+            text-align: center;
+            overflow-y: auto;
+            /* Adiciona rolagem vertical se necessário */
+        }
 
+
+            {
                 {
-                    {
-                    !-- text-align: center;
-                    --
-                }
+                !-- text-align: center;
+                --
             }
+        }
         }
 
         .navbar {
@@ -132,7 +142,7 @@
             color: RGB 108, 180, 118;
             padding: 3em;
             bottom: 0;
-            position: static;
+            position: relative;
             width: 100%;
             text-align: center
         }
@@ -186,6 +196,7 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
+                <br>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-2">
                         <li class="nav-item"><a href="/Home">Home</a></li>
@@ -193,6 +204,9 @@
                         <li class="nav-item"><a href="/Eventos">Eventos</a></li>
                         <li class="nav-item"><a href="/eventosAdm">Administrador</a></li>
                         <li class="nav-item"><a href="/Contato">Contato</a></li>
+                        <li class="nav-item"><a href="/torneio">Torneio</a></li>
+                        <li class="nav-item"><a href="/login">Login</a></li>
+                        <li class="nav-item"><a href="/logout">Logout</a></li>
 
                     </ul>
                     <li class="nav-item dropdown">

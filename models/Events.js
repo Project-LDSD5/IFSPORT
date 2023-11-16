@@ -1,28 +1,44 @@
-const db = require('./db')
+const { Sequelize, sequelize } = require('./db'); // Importe as dependências corretamente
 
-const Events = db.sequelize.define('events', {
+const Events = sequelize.define('events', {
     sport: {
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING
+
     },
     hostTeam: {
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING
     },
     visitingTeam: {
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING
     },
     eventTime: {
-        type: db.Sequelize.TIME
+        type: Sequelize.TIME
     },
     dateEvent: {
-        type: db.Sequelize.DATE
+        type: Sequelize.DATE
     },
     eventsPlace: {
-        type: db.Sequelize.TEXT
+        type: Sequelize.TEXT
+    },
+    hostTeamScore: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0 // Definir a pontuação inicial como 0
+    },
+    visitingTeamScore: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0 // Definir a pontuação inicial como 0
     }
+});
 
+// Não é necessário exportar o modelo aqui
+Events.sync({ force: true })
+    .then(() => {
+        console.log("Tabela 'events' criada com sucesso!");
+    })
+    .catch(err => {
+        console.error("Erro ao criar a tabela 'events':", err);
+    });
 
-})
+// Exporte apenas o modelo
+module.exports = Events;
 
-//Rodar uma unica vez para criar tabela
-//Events.sync({force: true})
-module.exports = Events

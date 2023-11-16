@@ -1,15 +1,18 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Atualização de Evento</title>
-   <style>
+  <title>Atualização de Evento</title>
+  <style>
+    center-button {
+      display: block;
+      margin: 0 auto;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -103,17 +106,11 @@
     }
 
     /* Defina uma largura específica para os inputs em computadores */
-    input  {
-      width: 50%;
-      height: 40px;
-      border-radius: 10px;
-      /* Largura de 20% para computadores */
-    }
+    input,
     textarea {
       width: 50%;
       height: 40px;
       border-radius: 10px;
-      /* Largura de 20% para computadores */
     }
 
     .btn-submit {
@@ -138,43 +135,51 @@
       color: #025008;
       margin-top: 22px;
       font-family: sans-serif;
-
-      /* Centralize o título */
     }
-   
   </style>
 </head>
 
 <body>
-    <!-- Seu formulário de atualização de evento aqui -->
-    <div class="event-form-container">
-        <h1>Atualizar Eventos</h1>
+  <!-- Seu formulário de atualização de evento aqui -->
+  <div class="event-form-container">
+    <h1>Atualizar Eventos</h1>
     <form class="form" action="/update" method="POST">
-         <label for="eventTime">ID:</label>
-        <input type="text" value="{{events.dataValues.id}}" name="eventId">
-         <label for="eventTime">Esporte:</label>
-        <input type="text" value="{{events.dataValues.sport}}" name="sport">
-        <label for="hostTeam">Time da casa:</label>
-        <input type="text" value="{{events.dataValues.hostTeam}}" name="hostTeam">
-        <label for="visitingTeam">Time visitante:</label>
-        <input type="text" value="{{events.dataValues.visitingTeam}}" name="visitingTeam">
-        <label for="eventTime">Horário do evento:</label>
-        <input type="time" value="{{events.dataValues.eventTime}}" name="eventTime">
-        <label for="dateEvent">Data do evento (MM/DD/AAAA):</label>
-        <input type="date" value="{{events.dataValues.dateEvent}}" name="dateEvent">
-        <label for="eventsPlace">Local do evento:</label>
-        <textarea name="eventsPlace">{{events.dataValues.eventsPlace}}</textarea>
-        </br>
-        <button type="submit" class="btn-submit">Atualizar evento</button>
+      <input type="hidden" name="eventId" value="{{events.dataValues.id}}">
+      <label for="eventTime">ID:</label>
+      <input type="text" value="{{events.dataValues.id}}" name="eventId">
+      <label for="eventTime">Esporte:</label>
+      <input type="text" value="{{events.dataValues.sport}}" name="sport">
+      <label for="hostTeam">Time da casa:</label>
+      <input type="text" value="{{events.dataValues.hostTeam}}" name="hostTeam">
+      <label for="visitingTeam">Time visitante:</label>
+      <input type="text" value="{{events.dataValues.visitingTeam}}" name="visitingTeam">
+      <label for="eventTime">Horário do evento:</label>
+      <input type="time" value="{{events.dataValues.eventTime}}" name="eventTime">
+      <label for="dateEvent">Data do evento (DD/MM/AAAA):</label>
+      <input type="date" value="{{events.dataValues.dateEvent}}" name="dateEvent">
+      <label for="eventsPlace">Local do evento:</label>
+      <textarea name="eventsPlace">{{events.dataValues.eventsPlace}}</textarea>
+
+
+      <!-- Adicione campos de pontuação -->
+      <label for="hostTeamScore">Pontuação do time da casa:</label>
+      <input type="number" value="{{events.dataValues.hostTeamScore}}" name="hostTeamScore">
+
+      <label for="visitingTeamScore">Pontuação do time visitante:</label>
+      <input type="number" value="{{events.dataValues.visitingTeamScore}}" name="visitingTeamScore">
+
+      <!-- Mova o botão para baixo deste ponto -->
+      <div>
+        <button type="submit" class="btn-submit center-button">Atualizar evento</button>
     </form>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
+    </script>
 </body>
 
 </html>
