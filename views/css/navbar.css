@@ -21,8 +21,8 @@ body {
 }
 
 .navbar {
-    background-color: #007bff;
-    color: #ffffff;
+    background-color:  rgba(0, 0, 0, 0.699);
+    color: #00a30e;
     padding: 1em;
     text-align: center;
 }
@@ -39,12 +39,20 @@ body {
 
 .nav-item a {
     text-decoration: none;
-    color: #ffffff;
+    color: #00a30e;
     font-weight: bold;
+    text-align: left;
 }
 
 .nav-item a:hover {
-    color: #dddddd;
+    color: #00a30e;
+}
+.navbar-toggler{
+    color: #00a30e;
+}
+
+.navbar-toggler-icon{
+    color: #00a30e;
 }
 
 .event-form {

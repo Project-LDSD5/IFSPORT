@@ -8,14 +8,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <style>
+    
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color:  #333333;
       overflow-y: scroll;
       zoom: 90%;
-      /* Adiciona um zoom de 90% */
     }
 
     .container {
@@ -34,16 +34,24 @@
     }
 
     .navbar {
-      background-color: #BADABE;
+      background-color: rgba(0, 0, 0, 0.699);
       color: #ffffff;
       padding: 1em;
     }
 
     .navbar-brand {
       font-family: fantasy;
-      color: #025008;
+      color: #00a30e;
       font-size: xx-large;
       font-style: italic;
+    }
+
+    .navbar-toggler{
+    color: #00a30e;
+    }
+
+    .navbar-toggler-icon{
+        color: #00a30e;
     }
 
     .event-form-container {
@@ -88,11 +96,7 @@
       border-radius: 3px;
       cursor: pointer;
       transition: background-color 0.3s;
-    }
-
-    .btn-submit:hover {
-      background-color: #0056b3;
-    }
+     }
 
     table {
       width: 100%;
@@ -116,6 +120,10 @@
       background-color: #f2f2f2;
     }
 
+    td{
+      color: #fff;
+    }
+
     th,
     td,
     button {
@@ -133,10 +141,6 @@
     .widget-tabela {
       height: 400px;
       overflow-y: scroll;
-    }
-
-    .col-lg-7 {
-      background-color: #cc005f;
     }
 
     .linha {
@@ -182,6 +186,10 @@
       color: #1cac28;
     }
 
+    h1{
+      color: #fff;
+    }
+
     .eventos-container {
       width: 80%;
       margin: 0 auto;
@@ -203,16 +211,6 @@
       background-color: #f2f2f2;
       font-weight: bold;
     }
-
-    footer {
-      background-color: #BADABE;
-      color: #ffffff;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
     .copy_right {
       color: #ffffff;
       text-align: center;
@@ -259,9 +257,11 @@
       </tr>
       {{/each}}
     </table>
+    <br><br>
   </div>
   <div class="btn-container">
     <button class="btn-submit" onclick="window.location.href='/form'">Cadastrar evento</button>
+      <br><br><br>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -270,9 +270,4 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
     crossorigin="anonymous"></script>
 </body>
-
-<footer>
-  <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
-</footer>
-
 </html>

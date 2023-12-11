@@ -4,108 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link rel="stylesheet" href="../views/css/main.scss">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
     <title>Torneio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
+            background-color: #333333;
             overflow-y: scroll;
-            zoom: 75%;
-            /* Adicionado para cobrir toda a altura da página */
+            zoom: 90%;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: #141414;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             text-align: center;
         }
 
         .navbar {
-            background-color: #BADABE;
-            color: #ffffff;
-            padding: 1em;
+      background-color: rgba(0, 0, 0, 0.699);
+      color: #ffffff;
+      padding: 1em;
 
 
-        }
+    }
 
+    .navbar-brand {
+      font-family: fantasy;
+      color: #00a30e;
+      font-size: xx-large;
+      font-style: italic;
+    }
+    .navbar-toggler{
+    color: #00a30e;
+    }
 
-        .navbar-brand {
-            font-family: fantasy;
-            color: #025008;
-            font-size: xx-large;
-            font-style: italic;
-        }
+    .navbar-toggler-icon{
+        color: #00a30e;
+    }
 
-        .event-form-container {
-            text-align: center;
-            /* Centralize horizontalmente */
-            margin: 0 auto;
-            /* Centralize verticalmente ajustando o espaçamento superior */
-            padding-top: 90px;
-            background-color: #ffffff;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-        }
-
-        input {
-            border-radius: 5px;
-            border-color: rgba(185, 0, 185, 0.445)BE;
-        }
-
-        /* Defina uma largura específica para os inputs em computadores */
-        #sport,
-        #hostTeam,
-        #visitingTeam,
-        #eventTime,
-        #dateEvent,
-        #eventsPlace {
-            width: 20%;
-            /* Largura de 20% para computadores */
-        }
-
-        .btn-submit {
-            background-color: #1cac28;
-            /* Cor azul da Globo Esporte */
-            color: #ffffff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
 
         header {
             text-align: center;
-            padding: 20px 0;
+            padding: 100px 0;
+            color: #ffffff;
+            border-radius: 5px;
+            margin-top: 20px;
         }
 
-        h1,
         h2 {
             font-size: 24px;
+            margin-top: 20px;
+            color: #00a30e;
         }
 
-        .developers {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        label {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #00a30e;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color:#00a30e;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        .form-group {
+            text-align: left;
         }
 
         .developer {
@@ -118,66 +98,66 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .developer h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        footer {
-            background-color: #BADABE;
-            color: #ffffff;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
         .copy_right {
-
             color: #ffffff;
             text-align: center;
         }
+
+        .btn-success,.btn-primary,.btn-secondary, .btn-warning, .btn-danger, .btn-info {
+            background-color: #00a30e; /* Cor de fundo do botão de sucesso */
+            border-color: #00a30e; /* Cor da borda do botão de sucesso */
+        }
+        
     </style>
 </head>
 
 <body>
-    <br><br> <br><br>
-    <div class="linha">
-        <hr>
+    <header>
+        <h1>Torneio</h1>
+    </header>
+
+    <div class="container">
+        <h2>Times</h2>
+        <ul id="teamList" class="list-group">
+            <!-- Teams will be dynamically added here -->
+        </ul>
+
+        <h2>Partidas - Rodada <span id="roundNumber">1</span></h2>
+        <ul id="matches" class="list-group">
+            <!-- Matches will be dynamically added here -->
+        </ul>
+
+        <h2>Vencedor da Rodada</h2>
+        <div id="roundWinner" class="alert alert-success" role="alert"></div>
+
+        <h2>Vencedor do Torneio</h2>
+        <div id="tournamentWinner" class="alert alert-info" role="alert"></div>
+
+        <form id="teamForm">
+            <div class="form-group">
+                <label for="teamName">Nome do Time:</label>
+                <input type="text" id="teamName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="teamScore">Pontuação:</label>
+                <input type="number" id="teamScore" class="form-control" required>
+            </div>
+            <button type="submit" id="addTeam" class="btn btn-primary">Adicionar Time</button>
+        </form>
+
+        <button id="shuffleTeams" class="btn btn-secondary">Embaralhar Times</button>
+
+        <div id="teamScores" class="mt-4">
+            <ul id="teamScoresList" class="list-group">
+                <!-- Team scores will be dynamically added here -->
+            </ul>
+            <button id="updateScores" class="btn btn-warning">Atualizar Pontuações</button>
+        </div>
+
+        <button id="startTournament" class="btn btn-success">Iniciar Partidas</button>
+        <button id="resetTeams" class="btn btn-danger">Reiniciar Torneio</button>
+        <button id="advanceRound" class="btn btn-primary">Avançar Rodada</button>
     </div>
-
-    <h2>Times</h2>
-    <ul id="teamList"></ul>
-
-    <h2>Partidas - Rodada <span id="roundNumber">1</span></h2>
-    <ul id="matches"></ul>
-
-    <h2>Vencedor da Rodada</h2>
-    <div id="roundWinner"></div>
-
-    <h2>Vencedor do Torneio</h2>
-    <div id="tournamentWinner"></div>
-
-    <form id="teamForm">
-        <label for="teamName">Nome do Time: </label>
-        <input type="text" id="teamName" required>
-        <br>
-        <label for="teamScore">Pontuação: </label>
-        <input type="number" id="teamScore" required>
-        <button type="submit" id="addTeam">Adicionar Time</button>
-    </form>
-    <br>
-    <button id="shuffleTeams">Embaralhar Times</button>
-
-    <div id="teamScores">
-        <ul id="teamScoresList"></ul>
-        <button id="updateScores">Atualizar Pontuações</button>
-        <br>
-    </div>
-    <br>
-    <button id="startTournament">Iniciar Partidas</button>
-    <button id="resetTeams">Reiniciar Torneio</button>
-    <button id="advanceRound">Avançar Rodada</button>
 
     <script>
         const teams = [];
@@ -229,20 +209,22 @@
         }
 
         // Função para exibir os vencedores da rodada na tela
-        function displayRoundWinners(winners) {
-            const roundWinner = document.getElementById('roundWinner');
-            roundWinner.innerHTML = 'Vencedores da Rodada:';
+function displayRoundWinners(winners) {
+    console.log('Vencedores da Rodada:', winners);
 
-            const winnerList = document.createElement('ul');
+    const roundWinner = document.getElementById('roundWinner');
+    roundWinner.innerHTML = 'Vencedores da Rodada:';
 
-            for (const winner of winners) {
-                const listItem = document.createElement('li');
-                listItem.textContent = winner.name;
-                winnerList.appendChild(listItem);
-            }
+    const winnerList = document.createElement('ul');
 
-            roundWinner.appendChild(winnerList);
-        }
+    for (const matchWinner of winners) {
+        const listItem = document.createElement('li');
+        listItem.textContent = matchWinner.name;
+        winnerList.appendChild(listItem);
+    }
+
+    roundWinner.appendChild(winnerList);
+}
 
         // Função para determinar os vencedores da rodada
         function determineRoundWinners(roundMatches) {
@@ -456,14 +438,11 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
 </body>
-<footer>
-    <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
-</footer>
 
 </html>

@@ -14,10 +14,10 @@
   <link rel="stylesheet" href="../views/css/navbar.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color: #333333;
     }
 
     .container {
@@ -31,7 +31,7 @@
     }
 
     .navbar {
-      background-color: #BADABE;
+      background-color: rgba(0, 0, 0, 0.699);
       color: #ffffff;
       padding: 1em;
 
@@ -40,9 +40,16 @@
 
     .navbar-brand {
       font-family: fantasy;
-      color: #025008;
+      color: #00a30e;
       font-size: xx-large;
       font-style: italic;
+    }
+    .navbar-toggler{
+    color: #00a30e;
+    }
+
+    .navbar-toggler-icon{
+        color: #00a30e;
     }
 
     .event-form-container {
@@ -95,32 +102,92 @@
       /* Cor mais escura ao passar o mouse */
     }
 
-    table {
+    .container-card {
+      width: 80%;
+      height: 20%;
+      margin: 0 auto;
+    }
+
+    .card-text {
+      text-align: end;
+    }
+
+    .card-with-background {
       width: 100%;
+      height: 80%;
+      background-image: url('');
+      background-size: cover;
+    }
+
+    .eventos-container {
+      width: 80%;
+      margin: 0 auto;
+      padding-bottom: 100px;
+    }
+
+    .table-container {
+      background-color: #333333;
+      color: #000;
+      margin: 0 auto;
       border-collapse: collapse;
-      margin-top: 20px;
+      width: 100%;
     }
 
-    table,
-    th,
-    td {
-      border: 1px solid #ddd;
+    .table-container th,
+    .table-container td {
+      padding: 10px;
+      border: 1px solid #000;
     }
 
-    th,
-    td {
+    .table-container th {
+      background-color: #333333;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card {
+      width: 386px;
+      border: 1px solid #535353;
+      border-radius: 10px;
+      padding: 20px;
+      margin-right: 15px;
+      margin-bottom: 20px;
+      display: inline-block;
+      vertical-align: top;
+      background-color: #333333;
+      margin-left: 220px;
+    }
+
+    .card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+
+    .card table {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .card table th {
       padding: 8px;
       text-align: left;
+      background-color: #d4f7d9;
+        padding: 10px;
+      border: 1px solid #000;
     }
 
-    th {
-      background-color: #f2f2f2;
-    }
-
-    th,
-    td,
-    button {
-      font-size: 14px;
+    .card table td {
+      padding: 8px;
+      text-align: left;
+      color: white;
+          padding: 10px;
+      border: 1px solid #000;
     }
 
     button {
@@ -186,7 +253,12 @@
 
     h2 {
       color: #1cac28;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: x-large;
+      font-family: Arial, Helvetica, sans-serif;
     }
+   
 
     .eventos-container {
       width: 80%;
@@ -194,9 +266,10 @@
     }
 
     .table-container {
-      background-color: #BADABE;
+      background-color: #7a7a7a;
       color: #000;
       margin: 0 auto;
+       border-radius: 20px;
       /* Centraliza a tabela no centro da página /
           border-collapse: collapse; / Remove espaçamento entre células da tabela /
           width: 100%; / Largura da tabela, ajuste conforme necessário */
@@ -207,13 +280,14 @@
     .table-container td {
       padding: 10px;
       /* Espaçamento interno das células */
-      border: 1px solid #ddd;
+      border: 1px solid #333333;
+       border-radius: 10px;
       /* Borda das células */
     }
 
     /* Estilos para o cabeçalho da tabela */
     .table-container th {
-      background-color: #f2f2f2;
+      background-color: #00a30e;
       /* Cor de fundo do cabeçalho */
       font-weight: bold;
       /* Texto em negrito no cabeçalho */
@@ -237,31 +311,39 @@
   <div class="linha">
     <hr>
   </div>
-  <div class="eventos-container">
-    <h2>Eventos Próximos</h2>
-    <div class="table-container">
-      <table>
-        <tr>
-          <th>Esporte</th>
-          <th>Time da Casa</th>
-          <th>Pontuação Casa</th>
-          <th>Time Visitante</th>
-          <th>Pontuação Visitante</th>
-          <th>Horário do Evento</th>
-          <th>Local do Evento</th>
-        </tr>
+  
 
-        {{#each events}}
-        <tr>
-          <td>{{dataValues.sport}}</td>
-          <td>{{dataValues.hostTeam}}</td>
-          <td>{{dataValues.hostTeamScore}}</td>
-          <td>{{dataValues.visitingTeam}}</td>
-          <td>{{dataValues.visitingTeamScore}}</td>
-          <td>{{dataValues.eventTime}}</td>
-          <td>{{dataValues.eventsPlace}}</td>
-        </tr>
-        {{/each}}
+         {{#each events}}
+  <div class="card">
+    <img src="https://cursos.ifsp.edu.br/static/img/rodape/Marca_IFSP_2015_GRU-05.jpg" alt="Descrição da Imagem">
+    <table>
+      <tr>
+        <th>Esporte</th>
+        <td>{{dataValues.sport}}</td>
+      </tr>
+      <tr>
+        <th>Time da Casa</th>
+        <td>{{dataValues.hostTeam}}</td>
+      </tr>
+      <tr>
+        <th>Time Visitante</th>
+        <td>{{dataValues.visitingTeam}}</td>
+      </tr>
+      <tr>
+        <th>Horário do Evento</th>
+        <td>{{dataValues.eventTime}}</td>
+      </tr>
+      <tr>
+        <th>Data do Evento</th>
+        <td>{{dataValues.dateEvent}}</td>
+      </tr>
+      <tr>
+        <th>Local do Evento</th>
+        <td>{{dataValues.eventsPlace}}</td>
+      </tr>
+    </table>
+  </div>
+  {{/each}}
 
       </table>
     </div>
@@ -289,8 +371,6 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
 </body>
-<footer>
-  <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
-</footer>
+
 
 </html>

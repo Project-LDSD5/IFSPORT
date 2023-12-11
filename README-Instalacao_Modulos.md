@@ -24,3 +24,6 @@ npm install socket.io
 npm install express express-session
 npm install bcrypt
 npm install express-session
+
+NOVO MODULO 05/12/2023
+npm install ejs

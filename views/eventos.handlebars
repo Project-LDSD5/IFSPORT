@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color:  #333333;
     }
 
     .container {
@@ -22,19 +22,27 @@
       text-align: center;
     }
 
-    .navbar {
-      background-color: #BADABE;
+       .navbar {
+      background-color: rgba(0, 0, 0, 0.699);
       color: #ffffff;
       padding: 1em;
-      margin-bottom: 8px;
-    }
 
+
+    }
 
     .navbar-brand {
       font-family: fantasy;
-      color: #025008;
+      color: #00a30e;
       font-size: xx-large;
       font-style: italic;
+    }
+
+    .navbar-toggler{
+    color: #00a30e;
+    }
+
+    .navbar-toggler-icon{
+        color: #00a30e;
     }
 
     label {
@@ -47,7 +55,6 @@
       border-color: rgba(185, 0, 185, 0.445)BE;
     }
 
-    /*Largura específica para os inputs */
     #sport,
     #hostTeam,
     #visitingTeam,
@@ -80,7 +87,7 @@
     table,
     th,
     td {
-      border: 1px solid #ddd;
+      border: 1px solid #000;
     }
 
     th,
@@ -91,6 +98,10 @@
 
     th {
       background-color: #f2f2f2;
+    }
+
+    td{
+      color: #fff;
     }
 
     th,
@@ -131,7 +142,7 @@
     }
 
     .table-container {
-      background-color: #BADABE;
+      background-color: #333333;
       color: #000;
       margin: 0 auto;
       border-collapse: collapse;
@@ -141,99 +152,137 @@
     .table-container th,
     .table-container td {
       padding: 10px;
-      border: 1px solid #ddd;
+      border: 1px solid #000;
     }
 
     .table-container th {
-      background-color: #f2f2f2;
+      background-color: #333333;
       font-weight: bold;
-    }
-
-    footer {
-      background-color: #BADABE;
-      color: #ffffff;
-      text-align: center;
-      position: static;
-      bottom: 0;
-      width: 100%;
     }
 
     h1 {
       margin-top: 8px;
       margin-bottom: 8px;
+      color: #fff;
     }
 
-    /*estilo do card*/
-    .card {
-      width: 386px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 20px;
-      margin-right: 15px;
-      margin-bottom: 20px;
-      display: inline-block;
-      vertical-align: top;
+    h2 {
+      color: #1cac28;
     }
-
-    .card img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-    }
-
-    .card table {
+table {
       width: 100%;
-      margin-top: 10px;
+      border-collapse: collapse;
+      margin-top: 20px;
+       border-radius: 10px;
     }
 
-    .card table th {
-      padding: 8px;
-      text-align: left;
-      background-color: #d4f7d9;
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
     }
 
-    .card table td {
+    th,
+    td {
       padding: 8px;
       text-align: left;
     }
+
+    th {
+      background-color:  rgba(0, 0, 0, 0.699);;
+    }
+
+    th,
+    td,
+    button {
+      font-size: 14px;
+    }
+        .table-container {
+      background-color: #7a7a7a;
+      color: #000;
+      margin: 0 auto;
+       border-radius: 20px;
+      /* Centraliza a tabela no centro da página /
+          border-collapse: collapse; / Remove espaçamento entre células da tabela /
+          width: 100%; / Largura da tabela, ajuste conforme necessário */
+    }
+
+    /* Estilos para as células da tabela */
+    .table-container th,
+    .table-container td {
+      padding: 10px;
+      /* Espaçamento interno das células */
+      border: 1px solid #333333;
+       border-radius: 10px;
+      /* Borda das células */
+    }
+
+    /* Estilos para o cabeçalho da tabela */
+    .table-container th {
+      background-color: #00a30e;
+      /* Cor de fundo do cabeçalho */
+      font-weight: bold;
+      /* Texto em negrito no cabeçalho */
+    }
+
+    .filtro{
+      
+    }
+   
   </style>
 </head>
 
 <body>
   <br><br><br><br><br>
   <h1>Bem-vindo à Página de eventos</h1>
-  <br><br>
-  {{#each events}}
-  <div class="card">
-    <img src="https://cursos.ifsp.edu.br/static/img/rodape/Marca_IFSP_2015_GRU-05.jpg" alt="Descrição da Imagem">
-    <table>
-      <tr>
-        <th>Esporte</th>
-        <td>{{dataValues.sport}}</td>
-      </tr>
-      <tr>
-        <th>Time da Casa</th>
-        <td>{{dataValues.hostTeam}}</td>
-      </tr>
-      <tr>
-        <th>Time Visitante</th>
-        <td>{{dataValues.visitingTeam}}</td>
-      </tr>
-      <tr>
-        <th>Horário do Evento</th>
-        <td>{{dataValues.eventTime}}</td>
-      </tr>
-      <tr>
-        <th>Data do Evento</th>
-        <td>{{dataValues.dateEvent}}</td>
-      </tr>
-      <tr>
-        <th>Local do Evento</th>
-        <td>{{dataValues.eventsPlace}}</td>
-      </tr>
-    </table>
+  <div class="filtro">
+     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Esportes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                            <li><a class="dropdown-item" href="#">Basquete</a></li>
+                            <li><a class="dropdown-item" href="#">Futebol</a></li>
+                            <li><a class="dropdown-item" href="#">Volei</a></li>
+                            <li><a class="dropdown-item" href="#">Handball</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Outros</a></li>
+                        </ul>
+                    </li>
   </div>
-  {{/each}}
+  <br><br>
+  <div class="eventos-container">
+    <h2>Eventos Próximos</h2>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Esporte</th>
+          <th>Time da Casa</th>
+          <th>Pontuação Casa</th>
+          <th>Time Visitante</th>
+          <th>Pontuação Visitante</th>
+          <th>Horário do Evento</th>
+          <th>Local do Evento</th>
+        </tr>
+
+        {{#each events}}
+        <tr>
+          <td>{{dataValues.sport}}</td>
+          <td>{{dataValues.hostTeam}}</td>
+          <td>{{dataValues.hostTeamScore}}</td>
+          <td>{{dataValues.visitingTeam}}</td>
+          <td>{{dataValues.visitingTeamScore}}</td>
+          <td>{{dataValues.eventTime}}</td>
+          <td>{{dataValues.eventsPlace}}</td>
+        </tr>
+        {{/each}}
+
+      </table>
+    </div>
+    </div>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
@@ -241,8 +290,4 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
 </body>
-<footer>
-  <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
-</footer>
-
 </html>

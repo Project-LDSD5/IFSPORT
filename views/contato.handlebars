@@ -8,16 +8,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <title>Entre em Contato com os Desenvolvedores</title>
-
-
-
-
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #ffffff;
+      background-color:  #333333;
     }
 
     .container {
@@ -30,27 +26,30 @@
       text-align: center;
     }
 
-    .navbar {
-      background-color: #BADABE;
+       .navbar {
+      background-color: rgba(0, 0, 0, 0.699);
       color: #ffffff;
       padding: 1em;
-
-
     }
-
 
     .navbar-brand {
       font-family: fantasy;
-      color: #025008;
+      color: #00a30e;
       font-size: xx-large;
       font-style: italic;
     }
 
+    .navbar-toggler{
+    color: #00a30e;
+    }
+
+    .navbar-toggler-icon{
+        color: #00a30e;
+    }
+
     .event-form-container {
       text-align: center;
-      /* Centralize horizontalmente */
       margin: 0 auto;
-      /* Centralize verticalmente ajustando o espaçamento superior */
       padding-top: 90px;
       background-color: #ffffff;
     }
@@ -69,20 +68,18 @@
       border-color: rgba(185, 0, 185, 0.445)BE;
     }
 
-    /* Defina uma largura específica para os inputs em computadores */
     #sport,
     #hostTeam,
     #visitingTeam,
     #eventTime,
     #dateEvent,
-    #eventsPlace {
-      width: 20%;
-      /* Largura de 20% para computadores */
+    #eventsPlace 
+    {
+    width: 20%;
     }
 
     .btn-submit {
       background-color: #1cac28;
-      /* Cor azul da Globo Esporte */
       color: #ffffff;
       padding: 10px 20px;
       border: none;
@@ -94,8 +91,9 @@
     header {
       text-align: center;
       padding: 20px 0;
+      color: #1cac28;
     }
-
+    
     h1 {
       font-size: 24px;
     }
@@ -121,15 +119,6 @@
       margin-bottom: 10px;
     }
 
-    footer {
-      background-color: #BADABE;
-      color: #ffffff;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
     .copy_right {
 
       color: #ffffff;
@@ -141,11 +130,8 @@
 <body>
 
   <header>
-
-
+    <br><br><br><br>
     <h1>Entre em Contato com os Desenvolvedores</h1>
-
-
   </header>
   <main>
     <section class="developers">
@@ -156,6 +142,7 @@
       </div>
       {{/each}}
     </section>
+    <br>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -164,12 +151,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-
-
-
 </body>
-<footer>
-  <p>Entre em contato conosco para obter suporte ou fazer perguntas.</p>
-</footer>
-
 </html>
